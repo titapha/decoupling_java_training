@@ -5,4 +5,3 @@ public interface Player {
 
     void respond(boolean lowerOrGreater);
 }
-

@@ -1,18 +1,17 @@
 package fr.lernejo.logger;
 
 public class CompositeLogger implements Logger {
-    private final Logger consoleLogger;
-    private final Logger fileLogger;
+    private final Logger firstLogger;
+    private final Logger secondLogger;
 
-    public CompositeLogger(Logger consoleLogger, Logger fileLogger) {
-        this.consoleLogger = consoleLogger;
-        this.fileLogger = fileLogger;
+    public CompositeLogger(Logger firstLogger, Logger secondLogger) {
+        this.firstLogger = firstLogger;
+        this.secondLogger = secondLogger;
     }
 
     @Override
     public void log(String message) {
-        consoleLogger.log(message);
-        fileLogger.log(message);
+        firstLogger.log(message);
+        secondLogger.log(message);
     }
 }
-
