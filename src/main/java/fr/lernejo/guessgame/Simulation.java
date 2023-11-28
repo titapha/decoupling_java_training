@@ -26,11 +26,23 @@ public class Simulation {
         }
     }
 
-    public void loopUntilPlayerSucceed() {
-        while (!nextRound()) {
-            // Continue the game
+    public void loopUntilPlayerSucceed(int maxIterations) {
+        long startTime = System.currentTimeMillis();
+        int iteration = 0;
+        while (!nextRound() && iteration < maxIterations) {
+            iteration++;
         }
+        long endTime = System.currentTimeMillis();
+
         logger.log("Game over!");
+        logger.log("Time taken: " + formatTime(endTime - startTime));
+        logger.log("Player " + (iteration < maxIterations ? "succeeded" : "did not succeed") + " within the iteration limit.");
+    }
+
+    private String formatTime(long milliseconds) {
+        long seconds = milliseconds / 1000;
+        long minutes = seconds / 60;
+        return String.format("%02d:%02d.%03d", minutes, seconds % 60, milliseconds % 1000);
     }
 }
 
